@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+@{
+    var showLeftNav = IsSectionDefined("Navigation");
+    var bodySpan = showLeftNav ? "19" : "24";
+    var nav = showLeftNav ? "nav" : "no-nav";
+    var showSocialMedia = ViewBag.ShowSocialMedia ?? true;
+}
+@helper Include(string filePath)
+    {
+        @Html.Raw(GetTextFromFile(filePath))
+}
+@functions{
+    /// <summary>
+    /// This mimics a server side include by grabbing the text from the specified file. Also handles recursive includes.
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
+    public string GetTextFromFile(string filePath)
+    {
+        try
+        {
+            var contents = File.ReadAllText(Server.MapPath(filePath));
+            var r = new System.Text.RegularExpressions.Regex("<!--#include virtual=\"(.+)\"\\s*-->");
+            var matches = r.Matches(contents);
+            foreach (System.Text.RegularExpressions.Match match in matches)
+            {
+                var nestedFilePath = match.Groups[1].Value;
+                var fileContent = GetTextFromFile(nestedFilePath);
+                contents = contents.Replace(match.Value, fileContent);
+            }
+            return contents;
+        }
+        catch (Exception)
+        {
+            return "";
+        }
+
+    }
+}
+
+
+
+<!--[if lt IE 8]>      <html class="no-js @nav theme-tan  lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js @nav  theme-tan  lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js @nav theme-tan  lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js @nav theme-tan" lang="en-us">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/TemplatePackage/3.0/images/cdc-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/TemplatePackage/3.0/images/cdc-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/TemplatePackage/3.0/images/cdc-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" href="/TemplatePackage/3.0/images/cdc-touch-icon-57x57.png" />
+    <link rel="shortcut icon" href="/TemplatePackage/3.0/images/favicon.ico" />
+    <link rel="stylesheet" href="/TemplatePackage/3.0/css/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+
+    <meta name="robots" content="index,follow" />
+    <meta property="cdc:template_version" content="3.0" />
+
+    <script type="text/javascript">    var appInsights = window.appInsights || function (a) { function b(a) { c[a] = function () { var b = arguments; c.queue.push(function () { c[a].apply(c, b) }) } } var c = { config: a }, d = document, e = window; setTimeout(function () { var b = d.createElement("script"); b.src = a.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js", d.getElementsByTagName("script")[0].parentNode.appendChild(b) }); try { c.cookie = d.cookie } catch (a) { } c.queue = []; for (var f = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; f.length;)b("track" + f.pop()); if (b("setAuthenticatedUserContext"), b("clearAuthenticatedUserContext"), b("startTrackEvent"), b("stopTrackEvent"), b("startTrackPage"), b("stopTrackPage"), b("flush"), !a.disableExceptionTracking) { f = "onerror", b("_" + f); var g = e[f]; e[f] = function (a, b, d, e, h) { var i = g && g(a, b, d, e, h); return !0 !== i && c["_" + f](a, b, d, e, h), i } } return c }({ instrumentationKey: "ec185d67-1775-444a-97b4-9e41994cf0d2", maxBatchSizeInBytes: 0 }); window.appInsights = appInsights, appInsights.queue && 0 === appInsights.queue.length && appInsights.trackPageView(null, null, { urlReferrer: document.referrer });</script>
+
+    @Include("/TemplatePackage/3.0/includes/head.html")
+    @RenderSection("Head", false)
+
+</head>
+<body>
+    @if (showLeftNav)
+    {
+        @Include("/TemplatePackage/3.0/includes/skipMenuNavLocal.html")
+    }
+    else
+    {
+        @Include("/TemplatePackage/3.0/includes/skipMenuNoNavLocal.html")
+    }
+    <div id="wrapper">
+        @Include("/TemplatePackage/3.0/includes/chromeFrame.html")
+        <header id="header">
+            <div class="container">
+                <!-- header -->
+                <div class="row">
+                    <div id="logo" class="span14">
+                        @Include("/TemplatePackage/3.0/includes/logo.html")
+                    </div>
+                    <!-- search viewport 3/4 -->
+
+                    <div id="searchArea" class="span10 hidden-one hidden-two">
+
+                        <div class="hidden"><a href="#" name="searchTarget">Start of Search Controls</a></div>
+                        <form class="searchForm" method="get" action="https://search.cdc.gov/search">
+                            <fieldset class="search-form-wrapper local">
+                                <legend>Search Form Controls</legend>
+                                <div class="search-form-checkbox">
+                                    <label class="subset"><input type="checkbox" name="subset" checked="checked" value="NIOSH">Search NIOSH</label>
+                                </div>
+                                <div class="search-input-wrapper">
+                                    <div class="search-buttons">
+                                        <button class="btn-clear"><span class="sprite-14-close">Cancel</span></button>
+                                        <button class="btn-submit"><span class="sprite-14-search-black">Submit</span></button>
+                                    </div>
+                                    <div class="search-input">
+                                        <label><input type="text" placeholder="SEARCH" name="query" /><span class="hidden">Search The CDC</span></label>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="utf8" value="&#x2713;" />
+                                <input type="hidden" name="affiliate" value="cdc-main" />
+                            </fieldset>
+                        </form>
+                        <div class="a2z-button pull-right hidden-one hidden-two"><a href="#" id="azTab">CDC A-Z Index <span class="icon-angle-down"></span></a></div>
+                    </div>
+                    <!-- /search viewport 3/4 -->
+                </div>
+                @Include("/TemplatePackage/3.0/includes/menu.html")
+                <div class="a2z-bar hide">
+                    @Include("/TemplatePackage/3.0/includes/a2z.html")
+                </div>
+                <!-- search viewport 1/2 -->
+                <div id="searchArea-two-column" class="span24 searchbar hide hidden-three hidden-four">
+
+                    <div class="hidden"><a href="#" name="searchTarget">Start of Search Controls</a></div>
+                    <form class="searchForm" method="get" action="https://search.cdc.gov/search">
+                        <fieldset class="search-form-wrapper local">
+                            <legend>Search Form Controls</legend>
+                            <div class="search-form-checkbox">
+                                <label class="subset"><input type="checkbox" name="subset" checked="checked" value="NIOSH">Search NIOSH</label>
+                            </div>
+                            <div class="search-input-wrapper">
+                                <div class="search-buttons">
+                                    <button class="btn-clear"><span class="sprite-14-close">Cancel</span></button>
+                                    <button class="btn-submit"><span class="sprite-14-search-black">Submit</span></button>
+                                </div>
+                                <div class="search-input">
+                                    <label><input type="text" placeholder="SEARCH" name="query" /><span class="hidden">Search The CDC</span></label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="utf8" value="&#x2713;" />
+                            <input type="hidden" name="affiliate" value="cdc-main" />
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- /search viewport 1/2 -->
+                @Include("/TemplatePackage/3.0/includes/emergency.html")
+                <!-- /header -->
+                <div class="titlebar">
+                    <!-- When this template is used for a topic home page then the following should be an <h1> tag. -->
+                    <h2>
+                        NIOSH Mining
+                    </h2>
+                </div>
+                @Include("/TemplatePackage/3.0/includes/noscript.html")
+            </div>
+        </header>
+        <div class="container">
+            @*<div id="featureArea">
+                    <!-- Feature Option - begin editable -->
+                    <div class="row">
+                        <div class="span24">
+                            <div data-picture="" data-alt="site ID" data-href="http://www.cdc.gov/niosh">
+                                <div data-src="@Url.Content("~/TemplatePackage/3.0/local/images/si-no-left-vp1.svg")"></div>
+                                <div data-src="@Url.Content("~/TemplatePackage/3.0/local/images/si-no-left-vp2.svg")" data-media="(min-width: 768px)"></div>
+                                <div data-src="@Url.Content("~/TemplatePackage/3.0/local/images/si-no-left-vp3.svg")" data-media="(min-width: 980px)"></div>
+                                <div data-src="@Url.Content("~/TemplatePackage/3.0/local/images/si-no-left-vp4.svg")" data-media="(min-width: 1200px)"></div>
+                                <!--[if (lt IE 9) & (!IEMobile)]>
+                                <div data-src="@Url.Content("~/TemplatePackage/3.0/local/images/si-no-left-vp3.svg")"></div>
+                                <![endif]-->
+                                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                                <noscript>
+                                    <img src="@Url.Content("~/TemplatePackage/3.0/local/images/si-no-left-vp3.svg")" alt="site ID" />
+                                </noscript>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <!--  /end #featureArea - end editable -->
+            <div id="content">
+                <div class="row">
+                    @if (showLeftNav)
+                    {
+                        <!-- left nav -->
+                        <div id="nav-container" class="hidden-one hidden-two span5">
+                            <nav id="left" class="hidden-one hidden-two">
+                                @RenderSection("Navigation", false)
+                            </nav>
+                        </div>
+                    }
+                    <div class="breadcrumbs hidden-one span@(bodySpan)">
+                        @RenderSection("Breadcrumbs", false)
+                    </div>
+                    @if (IsSectionDefined("MainTitle"))
+                    {
+                        <div class="span@(bodySpan) pagetitle">
+                            <h1>
+                                @RenderSection("MainTitle", false)
+                            </h1>
+                            <!--/div-->
+                            <!-- uncomment div for content syndication-->
+                        </div>
+                    }
+                    @if (showSocialMedia)
+                    {
+                        <div id="share-bar" class="span@(bodySpan)">
+                            <div class="socialmediabar">
+                                <div class="row">
+                                    <div class="hidden-one pull-right">
+                                    </div>
+                                    <div class="span9">
+                                        @Include("/TemplatePackage/3.0/includes/socialMediaShare.html")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- body -->
+                    <div id="body" class="span@(bodySpan)">
+                        <div id="contentArea">
+                            @RenderBody()
+                            <!-- Persistent Content Area -->
+                            <div id="content-secondary">
+                                <!-- begin editable -->
+                                <!--  // This area is optional
+                                // All content in the Right Column (except for Page Option links and GovD) will be moved to the Persistent Content Area upon migration
+                                -->
+                                <!-- /end editable -->
+                            </div>
+                            <!-- /end #content-secondary -->
+                        </div>
+                        <!-- /end #contentArea -->
+                    </div>
+                    <!-- /end #body -->
+                </div>
+                @if (!showLeftNav)
+                {
+                    <!-- left nav included after content on pages where it doesn't display -->
+                    <nav id="left" class="hidden-one hidden-two">
+                        @RenderSection("Navigation", false)
+                    </nav>
+                }
+
+                <div class="row">
+                    <div class="span24">
+                        @Include("/TemplatePackage/3.0/includes/pluginsLegend.html")
+                    </div>
+                </div>
+
+                <!-- date stamp -->
+                <div id="datestamp" class="row" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+                    <div class="span24">
+                        <ul>
+                            @if (ViewBag.LastReviewed != null)
+                            {
+                                <li class="last-reviewed">
+                                    Page last reviewed: <span>
+                                        @ViewBag.LastReviewed
+                                    </span>
+                                </li>
+                            }
+                            @if (ViewBag.LastUpdated != null)
+                            {
+                                <li class="last-updated">
+                                    Page last updated:
+
+                                    <span>
+                                        @ViewBag.LastUpdated
+                                    </span>
+                                </li>
+                            }
+                            <li class="content-source">
+                                Content source: <a href="http://www.cdc.gov/NIOSH/">National Institute for Occupational Safety and Health</a>, <a href="http://www.cdc.gov/niosh/mining">Mining Program </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /end #content -->
+        </div>
+        <!-- / end .container -->
+        <!-- footer -->
+        <footer id="footer" class="cdcSlimFooter">
+            @Include("/TemplatePackage/3.0/includes/footerSubSocialMedia.html")
+            <div class="container">
+                <div class="cdcLinks">
+                    <div class="container">
+                        <ul>
+                            @Include("/TemplatePackage/3.0/includes/footerSubCdcLinks.html")
+                        </ul>
+                    </div>
+                </div>
+                <div class="cdcContact">
+                    <div class="container">
+                        <ul>
+                            <li class="local-contact">
+
+                                <!-- include eng footerSubGlobalContact1.html -->
+                                <section>
+                                    <address class="address" itemtype="https://schema.org/Organization" itemscope="itemscope">
+                                        <span class="value" itemprop="address" itemtype="https://schema.org/PostalAddress" itemscope="itemscope">
+                                            <span itemprop="streetAddress">1600 Clifton Road</span>
+                                            <span itemprop="addressLocality">Atlanta</span>,
+                                            <span itemprop="addressRegion">GA</span>
+                                            <span itemprop="postalCode">30329-4027</span>
+                                            <span itemprop="addressCountry">USA</span>
+                                        </span><br>
+                                        <span class="value" itemprop="telephone">800-CDC-INFO (800-232-4636)</span>,
+                                        <span class="value" itemprop="telephone">TTY: 888-232-6348</span><br>
+                                        <span class="value" itemprop="contactPoint" itemtype="https://schema.org/ContactPoint" itemscope="itemscope">
+                                            <span itemprop="url"><a class="default no-link" href="https://wwwn.cdc.gov/dcs/RequestForm.aspx">Email CDC-INFO</a></span>
+                                        </span>
+                                    </address>
+                                </section>
+                                <!-- /include eng footerSubGlobalContact1.html -->
+                            </li>
+                            <li class="contact">
+                                @Include("/TemplatePackage/3.0/includes/footerSubGlobalContact2.html")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- /#footer -->
+        <div id="totop" class="off visible-one">TOP</div>
+    </div>
+    @Include("/TemplatePackage/3.0/includes/js-core.html")
+    <script>
+        //save links that are supposed to open in a new window so we can fix them after CDC's policy sets their target to _self
+        var blankAnchors = $("a[href]").filter(function () {
+            return $(this).attr("target") == "_blank";
+        });
+    </script>
+    @Include("/TemplatePackage/3.0/includes/js-modules.html")
+    @Include("/TemplatePackage/3.0/includes/survey.html")
+    <script src="@Url.Content("~/Scripts/jqueryui/jquery-ui.min.js")"></script>
+
+
+    @Include("/TemplatePackage/3.0/includes/metricsTop.html")
+    <!-- The following include is where local metrics settings for SiteCatalyst and GA are made -->
+    s.pageName=document.title;
+    s.channel="NIOSH";
+    siteCatalyst.setLevel1("NIOSH");
+    //siteCatalyst.setLevel2("NIOSH Mining");
+    @Include("/TemplatePackage/3.0/includes/metricsBottom.html")
+    <!-- The following include is for nav/breadcrumb rendering functionality and is needed in all templates -->
+    @*<script>
+                    var cdcLeftNav = new CDC.LeftNav("nav-primary", "", true, true, true);
+
+                    cdcLeftNav.render();
+        </script>*@
+    @RenderSection("Scripts", false)
+    <script>
+        CDC.Global.variables.domainsToIgnoreExternalLink.push("localhost");
+        //set the link targets back to their intended value
+        setTimeout(function () { blankAnchors.attr("target", "_blank"); }, 100);
+    </script>
+</body>
+</html>

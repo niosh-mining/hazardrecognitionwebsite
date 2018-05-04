@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.HeadTitle = "Hazard Recognition";
+    ViewBag.BodyTitle = "Hazard Recognition";
+    ViewBag.Title = "CDC - Mining - Hazard Recognition Challenge - Home";
+}
+@section Breadcrumbs{
+    <div class="bread-crumb hidden-one">
+        <span class="hidden-one"><a class="no-link tp-link-policy" href="//www.cdc.gov/">CDC</a></span>
+        <span class="lt hidden-one"></span>
+        <span class="hidden-one"><a href="//www.cdc.gov/niosh/index.html" class="no-link tp-link-policy">NIOSH</a></span>
+        <span class="lt hidden-one"></span>
+        <span class="hidden-one"><a class="no-link tp-link-policy" href="//www.cdc.gov/niosh/mining/index.html">Mining</a></span>
+        <span class="lt hidden-one"></span>
+        <span><a class="no-link tp-link-policy" href="//www.cdc.gov/niosh/mining/works/default.html">Tools &amp; Publications</a></span>
+        <span class="lt hidden-one"></span>
+        <span><a class="no-link tp-link-policy" href="//www.cdc.gov/niosh/mining/works/coversheet2013.html">HazRec Home</a></span>
+    </div>
+}
+<style>
+    a.btn-primary {
+        color: white !important;
+        text-decoration: none !important;
+    }
+</style>
+
+<h1>Hazard Recognition Challenge</h1>
+<img src="~/Content/collage.png" style="float: right; margin-left: 10px;" />
+<h3>What is the Hazard Recognition Challenge?</h3>
+<p>The Hazard Recognition Challenge allows you to perform a virtual workplace examination on four locations at a surface stone operation: the pit, the plant, the shop, and a roadway. Each location contains multiple hazards. Your goal is to find as many hazards as possible at that work location.</p>
+<h3>What are the benefits of the Hazard Recognition Challenge?</h3>
+<p>You can use the information from this App to increase your knowledge and awareness of hazards found at a surface stone operation. Once you finish the challenge, the App will present your results so that you know which hazards you successfully identified and those that you missed. In addition, the App will provide a brief explanation of each hazard along with supplemental information such as accident and injury statistics from the Department of Labor (DOL), relevant Mine Safety and Health Administration (MSHA) standards, and links to tools you can use to further your learning about mine site hazards. We encourage you to review this supplemental information and use it to start a discussion about a specific hazard or a type of hazard during pre-shift safety meetings or toolbox talks.</p>
+<h3>About the hazards</h3>
+<p>Industry subject matter experts reviewed each hazard included in the panoramic scenes to ensure that they are true to life and create an accurate depiction of hazards found in the real working environment. As you complete the challenge, you may find additional unidentified hazards within the scenes. We will be adding a feature to show you other hazards users have frequently identified during the challenge, so check back soon.</p>
+<h3>How to use this application</h3>
+<p>To start the challenge, click on the Begin button below. You will be taken to the first hazard recognition location—the shop.</p>
+<ul>
+    <li>Click the arrow buttons on the panoramic scene or press your keyboard arrow keys to pan around the 360-degree image. You may also use your mouse to pan by dragging the cursor over the image.</li>
+    <li>To zoom in and out, click the plus (+) and minus (-) buttons on the panoramic scene or rotate your mouse wheel.</li>
+    <li>Click on any hazards you spot. A marker will appear in the location you click. If you add a marker by mistake, you can click on it to remove it.</li>
+    <li>You have two minutes to identify hazards at each location. If you finish a location early, click on the Next button at the bottom right of the screen to proceed to the next challenge. If you finish the final challenge early, click on the Finish button at the bottom right of the screen. If you do not finish a challenge within two minutes, the App will automatically take you to the next challenge, or to the results page, with your results recorded.</li>
+</ul>
+<p>For additional help, refer to the <a href="@Url.Action("Help")" target="_blank">Help Guide</a> for an overview of the features and functions.</p>
+
+
+<div style="text-align: center;">
+    <a href="@Url.Action("Challenge", new { id = 1 })" class="btn btn-primary" style="text-decoration: none; text-align:center; color:white; width: 200px;  vertical-align: top;">Begin</a>
+    @*<div style="display: inline-block;">
+            <a class="btn btn-primary disabled" style="text-decoration: none; text-align:center; color:white; width: 200px;">Heat Maps</a>
+            <div>Coming Nov 2017</div>
+        </div>*@
+    @*<a href="@Url.Action("HeatMapLanding")" class="btn btn-disabled" style="text-decoration: none; text-align:center; color:black; width: 200px; height: 30px;">Heat Maps</a>*@
+</div>

@@ -1,0 +1,20 @@
+﻿<krpano>
+	
+	<!-- the skin -->
+	<include url="../skin/defaultskin.xml" />
+	
+	<!-- view settings -->
+	<view hlookat="0" vlookat="0" maxpixelzoom="6.0" fovmax="150" limitview="range" vlookatmin="-16.519" vlookatmax="16.519" />
+	
+
+	<preview url="Plant_5_Hazard_Info.tiles/preview.jpg" />
+  <events onclick="js(HazRecKR.Mouse_Clicked();)"></events>
+	<image>
+		<cube url="Plant_5_Hazard_Info.tiles/pano_%s.jpg" />
+
+		<mobile>
+			<cube url="Plant_5_Hazard_Info.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+
+</krpano>

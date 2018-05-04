@@ -1,0 +1,496 @@
+// mixins.less
+// some methods for generating css patterns
+// 
+// 
+// TODO: add a red X to the sprite and set it as default here;
+
+.icons(@tb, @lr, @w, @h){background: url(@primarySprites) no-repeat @tb @lr;width: @w;height: @h;}
+// .sprites(@tb, @lr, @w, @h){background: url(@primarySprites) no-repeat @tb @lr;width: @w;height: @h;}
+.fileicons(@tb, @lr, @w, @h, @backGrnd){background: url(@@backGrnd) no-repeat @tb @lr;width: @w;height: @h;}
+.sprites(@tb, @lr, @bg){background: url(@@bg) no-repeat @tb @lr;}
+
+// all the theme color specific elements go here
+.theme-buildr(@themename: "unknown", @primary: @white, @secondary: @white, @selected: @white){
+	// TODO: currenty theme global variable 
+	// @theme-primary: @primary;
+	// @theme-secondary: @secondary;
+	// @theme-selected: @selected;
+
+
+	// @start: (~"/* ");
+	// @end:   (~" */");
+	// @{start} @{themename} @{end}
+	// * { text-decoration: none; }
+
+	.primary-color { color: @primary!important;}
+	.primary-bg-color { background: @primary!important;}
+	.secondary-color { color: @secondary!important;}
+	.secondary-bg-color { background: @secondary;}
+	.selected-color { color: @selected!important;}
+	.selected-bg-color { background: @selected!important;}
+
+	// menu button in 1/2 column used to have themed bottom border
+	.border-bottom-themed {
+		border-bottom:2px solid @selected;
+	}
+	
+	// titlebar across top of each page
+	.titlebar{
+		background:@selected;
+
+		.navbar .nav li.dropdown.open > .dropdown-toggle {
+			background: @secondary!important;
+		}
+	}
+
+	// standard navigation button modules
+	#wrapper {
+		// .navbtn, .typeL, [class*="-typeL"] {
+		.module-typeL {
+			div {
+				h3 {
+					color:@selected;
+				}
+			}
+
+			a:hover {
+				background:@selected;
+			}		
+		}		
+	}
+
+
+	// TODO: validate the need for this;
+	@media only screen 
+	and (-webkit-min-device-pixel-ratio: 2) 
+	and (min-device-width : 320px) 
+	and (max-device-width : 568px) {
+		.navbtn {
+			a:active {
+				background: @selected;		// WARN: this was just "selected"
+			}
+
+			a:hover * {
+				color:@white;
+			}
+		}
+	}
+
+	// back button over left nav in 1 column view
+	.back-btn {
+		background: @secondary;
+	}
+
+	// the header for the wrapper that displays large tables and images
+	.modal-header {
+		background: @secondary;
+		border-bottom: 2px solid @primary;
+	}	
+
+	// The theme colored paging buttons at the bottom of multipage
+	.mp-pagination{
+		li{
+			background: @primary;
+
+			&.selected{
+				background: @selected;
+			}
+		}
+	}
+
+	// top border of the typeI module
+	#multiPage, .multipage, .typeI, [class*="-typeI"] {
+		border-top: 4px solid @selected;
+	}
+
+	// govd button
+	.typeG, [class*="-typeG"], .emailupdates {
+		a.button {
+			background: @selected;
+		}
+	}
+
+	// left nav
+	nav#left {
+		border-left:1px solid @primary;
+		
+		h3 {
+			background: @selected;
+		}
+		
+		ul li{background:@primary;}
+		ul li ul li{background:@secondary;}
+		
+		> ul{
+			border-bottom: 1px solid @primary;
+			border-right:1px solid @primary;
+		}
+		
+		li{
+			border-top:1px solid @po-heading-bg;
+		}
+	}
+		
+	// search button
+	#search button{
+		background: @primary;
+	}
+
+	// search area background color
+	.local .input-prepend{
+		background: @primary;
+	}
+
+	// 3 tab menu in 1 or 2 column view
+	#mobile-menu {
+		li:first-child {
+			background: @selected;
+		}
+	}
+
+	// table styles
+	// ------------------------------------------------------------
+	// 
+	
+	.table-striped-primary {
+		tbody > tr:nth-child(odd) > td,
+		tbody > tr:nth-child(odd) > th {
+  			background-color: @primary;
+		}
+	}
+	
+	.table-striped-secondary {
+		tbody > tr:nth-child(odd) > td,
+		tbody > tr:nth-child(odd) > th {
+  			background-color: @secondary;
+		}
+	}
+
+	.table-hover-primary {
+		tbody tr:hover > td,
+		tbody tr:hover > th {
+  			background-color: @primary;
+		}
+	}
+
+	.table-hover-secondary {
+		tbody tr:hover > td,
+		tbody tr:hover > th {
+  			background-color: @secondary;
+		}
+	}
+
+	// Heading Emphasis (Type A)
+	// ------------------------------------------------------------
+	// .typeA, [class*="-typeA"],.double-rule,.hd {
+	.module-typeA, .module-typeP { 
+		h3{
+			background: @selected;
+		}
+
+		.somemore, p.somemore{
+			background: @selected;
+		}
+	}
+
+	// Dropshadow (Type B), page-curl
+	// ------------------------------------------------------------
+	// .typeB, [class*="-typeB"],.page-curl {
+	.module-typeB {
+		.somemore, p.somemore{
+			background: @selected;
+		}	
+	}
+	
+	// Solid Background - White (Type D)
+	// ------------------------------------------------------------
+	// .typeC, [class*="-typeC"],.roundem {
+	.module-typeC {
+		background: @secondary;
+		
+		.somemore, p.somemore{
+			background: @selected;
+		}		
+	}
+
+	// Solid Background - White (Type D)
+	// ------------------------------------------------------------
+	// .typeD, [class*="-typeD"] {
+	.module-typeD {
+		.somemore, p.somemore{
+			background: @selected;
+		}
+	}
+
+	// Solid Background - Dark (Type E)
+	// ------------------------------------------------------------
+	//.typeE, [class*="-typeE"] {
+	.module-typeE {
+		background: @selected;
+		
+		.somemore, p.somemore{
+			color: @selected;
+
+			a, span{
+				color: @selected!important;
+			}
+		}
+	}
+
+	// Gray Background - Gray (Type F)
+	// ------------------------------------------------------------	
+	// .typeF, [class*="-typeF"] {
+	.module-typeF {
+		.somemore, p.somemore{
+			background: @selected;
+		}
+	}
+
+	// .typeK, [class*="-typeK"] {
+	.module-typeK {
+		a {
+			span {
+				background: @selected;
+				border-bottom: 3px solid @primary;
+			}
+		}
+	}	
+	
+	// .box-module,
+	// .top-blocks, [class*="-typeG"]{
+	.module-typeG {
+		background: @primary;
+	}
+
+	// .typeN, [class*="-typeN"] {
+	.module-typeN {
+		h3{
+			background: @selected;
+		}
+	}
+
+	.whatsnew-module{
+		h3{
+			background: @selected;
+		}
+	}
+	
+	.flexsliderbox .flex-control-nav{
+		a:hover{
+			background-color: @primary;
+			// color: ;
+		}
+		a.active{
+			background-color: @selected;
+			color: @white;
+		}
+		a{
+			background-color: @secondary;
+			color: @selected;
+		}
+	}
+	
+	.flexsliderbox .flex-direction-nav li{
+		a.prev:before, a.flex-prev:before{border-color: transparent @primary transparent transparent;}
+		a.prev:after, a.flex-prev:after{border-color: transparent @white transparent transparent;}
+		a.next:before, a.flex-next:before{border-color: transparent transparent transparent @primary;}
+		a.next:after, a.flex-next:after{border-color: transparent transparent transparent @white;}
+	}
+}
+
+// bullet and ordered lists.
+// TODO: since these are the same, look into merging them into one list type
+.list-bullet-buildr(@spanSize: 0, @listSize: double, @width: 0){
+	.span&@{spanSize} &.@{listSize}.list-bullet, .span&@{spanSize} &.@{listSize}.list-bullet li,
+	.span&@{spanSize} &.@{listSize}.list-ordered, .span&@{spanSize} &.@{listSize}.list-ordered li {
+		max-width: @width;
+		width: @width;
+	}
+}
+
+// block lists
+.list-block-buildr(@spanSize: 0, @listSize: double, @width: 0){
+	.span&@{spanSize} &.@{listSize}.list-block, .span&@{spanSize} &.@{listSize}.list-block li {
+		max-width: @width;
+		width: @width;
+	}
+}
+
+//http://www.broken-links.com/2012/01/11/the-new-and-hopefully-final-linear-gradient-syntax/
+.linear-gradient(@color: #F5F5F5, @start: @white, @stop: @white){
+	background: @color;
+	background: linear-gradient(@color, @start) repeat scroll 0 0 transparent;
+	background: -webkit-linear-gradient(bottom, @start 0%,@color 94%,@color 100%); // Chrome10+,Safari5.1+ 
+	background: -o-linear-gradient(top, @start 0%,@color 94%,@color 100%); // Opera 11.10+ 
+	background: -ms-linear-gradient(top, @start 0%,@color 94%,@color 100%); // IE10+ 
+	filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{color}', endColorstr='@{stop}', GradientType=0)";
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: @white){
+	background: @color;
+	background: -webkit-gradient(linear,
+		left bottom,
+		left top,
+		color-stop(0, @start),
+		color-stop(1, @stop));
+	background: -ms-linear-gradient(bottom,
+		@start,
+		@stop);
+	background: -moz-linear-gradient(center bottom,
+		@start 0%,
+		@stop 100%);
+	background: -o-linear-gradient(@stop,
+		@start);
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255){
+	background: @color;
+	background: -webkit-gradient(linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(@start,@start,@start)),
+		color-stop(1, rgb(@stop,@stop,@stop)));
+	background: -ms-linear-gradient(bottom,
+		rgb(@start,@start,@start) 0%,
+		rgb(@stop,@stop,@stop) 100%);
+	background: -moz-linear-gradient(center bottom,
+		rgb(@start,@start,@start) 0%,
+		rgb(@stop,@stop,@stop) 100%);
+	background: -o-linear-gradient(rgb(@stop,@stop,@stop),
+		rgb(@start,@start,@start));
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",rgb(@stop,@stop,@stop),rgb(@start,@start,@start)));
+}
+
+
+.border(@thickness: 1px, @style: "solid", @color: #eee) {
+	border: @thickness @style @color;
+}
+
+.bordered(@top-color: #EEE, @right-color: #EEE, @bottom-color: #EEE, @left-color: #EEE){
+	border-top: solid 1px @top-color;
+	border-left: solid 1px @left-color;
+	border-right: solid 1px @right-color;
+	border-bottom: solid 1px @bottom-color;
+}
+
+.drop-shadow1(@x-axis: 1px, @y-axis: 1px, @blur: 2px, @spread: 1px, @alpha: 0.1){
+	-webkit-box-shadow: @x-axis @y-axis @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: @x-axis @y-axis @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow: @x-axis @y-axis @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.drop-shadow(@x-axis: 1px, @y-axis: 1px, @spread: 1px, @alpha: 0.1){
+	-webkit-box-shadow: @x-axis @y-axis @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: @x-axis @y-axis @spread rgba(0, 0, 0, @alpha);
+	box-shadow: @x-axis @y-axis @spread rgba(0, 0, 0, @alpha);
+}
+
+.rounded(@radius: 2px){
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.opacity(@opacity: 0.5){
+	-moz-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-webkit-opacity: @opacity;
+	opacity: @opacity;
+	@opperc: @opacity * 100;
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+	filter: ~"alpha(opacity=@{opperc})";
+}
+
+.transition-duration(@duration: 0.2s){
+	-moz-transition-duration: @duration;
+	-webkit-transition-duration: @duration;
+	-o-transition-duration: @duration;
+	transition-duration: @duration;
+}
+
+.transform(...){
+	-webkit-transform: @arguments;
+	-moz-transform: @arguments;
+	-o-transform: @arguments;
+	-ms-transform: @arguments;
+	transform: @arguments;
+}
+
+.rotation(@deg:5deg){
+	.transform(rotate(@deg));
+}
+
+.scale(@ratio:1.5){
+	.transform(scale(@ratio));
+}
+
+.transition(@duration:0.2s, @ease:ease-out){
+	-webkit-transition: all @duration @ease;
+	-moz-transition: all @duration @ease;
+	-o-transition: all @duration @ease;
+	transition: all @duration @ease;
+}
+
+.inner-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4){
+	-webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+	box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+
+.box-shadow(@arguments){
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	box-shadow: @arguments;
+}
+
+.box-sizing(@sizing: border-box){
+	-ms-box-sizing: @sizing;
+	-moz-box-sizing: @sizing;
+	-webkit-box-sizing: @sizing;
+	box-sizing: @sizing;
+}
+
+.user-select(@argument: none){
+	-webkit-user-select: @argument;
+	-moz-user-select: @argument;
+	-ms-user-select: @argument;
+	user-select: @argument;
+}
+
+.columns(/*@colwidth: 250px,*/ @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px){
+	// -moz-column-width: @colwidth;
+	-moz-column-count: @colcount;
+	-moz-column-gap: @colgap;
+	-moz-column-rule-color: @columnRuleColor;
+	-moz-column-rule-style: @columnRuleStyle;
+	-moz-column-rule-width: @columnRuleWidth;
+	// -webkit-column-width: @colwidth;
+	// -webkit-column-count: @colcount;
+	// -webkit-column-gap: @colgap;
+	// -webkit-column-rule-color: @columnRuleColor;
+	// -webkit-column-rule-style: @columnRuleStyle;
+	// -webkit-column-rule-width: @columnRuleWidth;
+	// column-width: @colwidth;
+	column-count: @colcount;
+	column-gap: @colgap;
+	column-rule-color: @columnRuleColor;
+	column-rule-style: @columnRuleStyle;
+	column-rule-width: @columnRuleWidth;
+}
+
+.translate(@x:0, @y:0){
+	.transform(translate(@x, @y));
+}
+
+.background-clip(@argument: padding-box){
+	-moz-background-clip: @argument;
+	-webkit-background-clip: @argument;
+	background-clip: @argument;
+}

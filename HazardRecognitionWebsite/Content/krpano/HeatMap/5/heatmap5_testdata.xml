@@ -1,0 +1,18 @@
+﻿<krpano>
+	
+	<!-- the skin -->
+	<include url="skin/defaultskin.xml" />
+	
+	<!-- view settings -->
+	<view hlookat="0" vlookat="0" maxpixelzoom="10.0" fovmax="150" limitview="auto" />
+	
+
+	<preview url="heatmap5_testdata.tiles/preview.jpg" />
+
+	<image type="CYLINDER" hfov="359.00" vfov="32.950724" voffset="0.00" multires="true" tilesize="4000" progressive="true">
+		<level tiledimagewidth="8000" tiledimageheight="755">
+			<cylinder url="heatmap5_testdata.tiles/pano_%v%h.jpg" />
+		</level>
+	</image>
+
+</krpano>

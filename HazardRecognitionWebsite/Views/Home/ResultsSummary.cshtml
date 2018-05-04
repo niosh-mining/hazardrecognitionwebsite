@@ -1,0 +1,60 @@
+﻿@model HazardRecognition.Models.ResultSummaryViewModel
+@{
+    ViewBag.HeadTitle = "Hazard Recognition Results";
+    ViewBag.BodyTitle = "Hazard Recognition Results";
+    ViewBag.Title = "CDC - Mining - Hazard Recognition Challenge - Results Summary";
+}
+@helper RenderResult(HazardRecognition.Models.HazardChallengeViewModel challengeResult)
+    {
+    <div class="module module-typeA span9">
+        <h3>Challenge @challengeResult.ChallengeId</h3>
+        <a style="float:left;" href="@Url.Action("ChallengeResult", new { id = @challengeResult.ChallengeId })"><img src="~/content/@challengeResult.ThumbnailName&#46;jpg" alt="Thumbnail image of the hazard challenge" /></a>
+        <div style="float: left;">
+            <div>@challengeResult.Hazards.Count(q => q.Selected) of @challengeResult.Hazards.Count hazards found</div>
+            <div>@challengeResult.TotalClicks Total click@(challengeResult.TotalClicks != 1 ? "s" : "")</div>
+            @*<div>@challengeResult.IncorrectClicks.Count() Incorrect click@(challengeResult.IncorrectClicks.Count != 1 ? "s" : "")</div>*@
+            <a href="@Url.Action("ChallengeResult", new { id = @challengeResult.ChallengeId })" class="btn btn-primary" style="text-decoration: none; color:white;">View results</a>
+        </div>
+    </div>
+}
+<style>
+    a.btn-primary {
+        color: white !important;
+        text-decoration: none !important;
+    }
+    span.tp-label{
+        text-decoration:none !important;
+    }
+</style>
+<a href="@Url.Action("Help")" target="_blank" class="btn btn-primary" style="float:right;">Help</a>
+<h2>Hazard Recognition Results Summary</h2>
+<p>Click on the <em>View results</em>&nbsp; button for each location to see which hazards you successfully identified and those that you missed. Note that your results will be discarded after one hour of inactivity. 
+    A <a href="@Url.Content("~/Content/HazardDescriptions_Printable_508.pdf")" target="_blank">printable version of all the hazards</a> is available.</p>
+<div id="viewBody">
+    
+    @{ 
+        var count = (int)Math.Ceiling(Model.ScoredChallenges.Count / 2.0);
+    }
+    <div class="">
+        @foreach (var challengeResult in Model.ScoredChallenges.Take(count))
+        {
+            @RenderResult(challengeResult);
+        }
+    </div>
+
+    <div class="">
+        @foreach (var challengeResult in Model.ScoredChallenges.Skip(count))
+        {
+            @RenderResult(challengeResult);
+        }
+    </div>
+    <div class="clear">
+        <p>Thank you for taking the Hazard Recognition Challenge! To learn more about hazard recognition research happening at NIOSH, please visit our <a href="https://www.cdc.gov/niosh/mining/researchprogram/projects/IdentifyingHazardsatMines.html">Hazard Recognition</a> project web page.</p>
+    </div>
+        @Html.ActionLink("Challenge Home", "Index", null, new { @class = "btn btn-primary", style = "margin-right: 10px;", onclick = "javascript: return confirm('Your current results will be discarded.');" })
+    @Html.ActionLink("Restart Challenge", "Restart", null, new { @class = "btn btn-primary", onclick = "javascript: return confirm('Your current results will be discarded.');" })
+    @*<div style="display: inline-block; float:right;">
+        <a class="btn btn-primary disabled" style="text-decoration: none; text-align:center; color:white; width: 100px;">Heat Maps</a>
+        <div style="text-align: center;">Coming Nov 2017</div>
+    </div>*@
+</div>

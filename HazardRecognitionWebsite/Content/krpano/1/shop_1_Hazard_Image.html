@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano - shop_1_Hazard_Image</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<style>
+		@-ms-viewport { width:device-width; }
+		@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+	</style>
+</head>
+<body>
+
+<script src="shop_1_Hazard_Image.js"></script>
+
+<div id="pano" style="width:100%;height:400px;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+	<script>
+		embedpano({swf:"shop_1_Hazard_Image.swf", xml:"shop_1_Hazard_Image.xml", target:"pano", html5:"prefer", mobilescale:1.0, passQueryParameters:true});
+	</script>
+</div>
+    <div style="padding:5px; width:100px;">
+        <span><b><u>mouse</u></b></span><br>
+        <span>x=</span><span id="mouse_x"></span><br>
+        <span>y=</span><span id="mouse_y"></span><br>
+        <span>ath=</span><span id="mouse_ath"></span><br>
+        <span>atv=</span><span id="mouse_atv"></span><br>
+    </div>
+    <script>
+        function getlookat() {
+            var krpano = document.getElementById("krpanoSWFObject");
+
+            if (krpano && krpano.get)	// it can take some time until krpano is loaded and ready
+            {
+                krpano.call("screentosphere(mouse.x, mouse.y, mouseath, mouseatv); js( showmouseinfo() );");
+            }
+        }
+
+        function mouse_clicked() {
+            var krpano = document.getElementById("krpanoSWFObject");
+
+            var h = krpano.get("mouseath");
+            var v = krpano.get("mouseatv");
+            krpano.call("addhotspot(mark);");
+            krpano.call("set(hotspot[mark].url, missing_berm.png);");
+            krpano.call("set(hotspot[mark].ath," + h + ");");
+            krpano.call("set(hotspot[mark].atv," + v + ");");
+            krpano.call("set(hotspot[mark].onclick, removehotspot(mark))");
+        }
+
+        function showmouseinfo() {
+            var krpano = document.getElementById("krpanoSWFObject");
+
+            var mouse_at_x = krpano.get("mouse.x");
+            var mouse_at_y = krpano.get("mouse.y");
+            var mouse_at_h = krpano.get("mouseath");
+            var mouse_at_v = krpano.get("mouseatv");
+
+            document.getElementById("mouse_x").innerHTML = mouse_at_x + "px";
+            document.getElementById("mouse_y").innerHTML = mouse_at_y + "px";
+            document.getElementById("mouse_ath").innerHTML = mouse_at_h.toFixed(2) + "°";
+            document.getElementById("mouse_atv").innerHTML = mouse_at_v.toFixed(2) + "°";
+        }
+
+        // update mouse info 30 times per second
+        var lookat_interval = setInterval('getlookat()', 1000.0 / 30.0);
+
+
+        // disable text selection to avoid cursor flickering
+        window.onload = function () {
+            document.onselectstart = function () { return false; } // ie
+            document.onmousedown = function () { return false; } // mozilla
+        }
+    </script>
+</body>
+</html>

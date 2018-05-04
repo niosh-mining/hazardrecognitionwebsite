@@ -1,0 +1,164 @@
+﻿@model HazardRecognition.Models.HazardChallengeViewModel
+@{
+    ViewBag.HeadTitle = "Hazard Recogniztion";
+    ViewBag.BodyTitle = "Hazard Recognition";
+    ViewBag.Title = "CDC - Mining - Hazard Recognition Challenge - Challenge " + Model.ChallengeId + " Results";
+}
+@section Scripts{
+    <script src="~/Content/krpano/krpano.js"></script>
+    <script src="~/Scripts/HazRecKR.js"></script>
+    <script>
+        HazRecKR.Initialize(
+            "@Url.Content($"~/Content/krpano/{Model.ChallengeId}/{Model.ImageName}")",
+            "@Url.Content("~/Content/krpano/crosshair.png")",
+            "@Url.Content("~/Content/krpano/crosshair.png")",
+            false, 
+            true);
+
+        var krpano = document.getElementById("krpanoSWFObject");
+        var index = 0;
+        $("#nextHazard").on('click', function () {
+            $("#results li:eq(" + index + ")").hide('slide', 'slow');
+            $("#results li:eq(" + (index + 1) + ")").show('slide', { direction: "right" }, 'slow');
+            index++;
+            if (index >= @(Model.Hazards.Count()) -1)
+                $(this).hide();
+            $("#previousHazard").show();
+            var haz = $("#results li:eq(" + (index) + ")");
+            HazRecKR.LookAt(haz.data("x"), haz.data("y"), index);
+        });
+        $("#previousHazard").on('click', function () {
+            $("#results li:eq(" + index + ")").hide('slide', { direction: "right" }, 'slow');
+            $("#results li:eq(" + (index - 1) + ")").show('slide', 'slow');
+            index--;
+            if (index <= 0)
+                $(this).hide();
+            $("#nextHazard").show();
+            var haz = $("#results li:eq(" + (index) + ")");
+            HazRecKR.LookAt(haz.data("x"), haz.data("y"), index);
+        });
+    </script>
+<script>
+    @{ var hazardIndex = 0;}
+    @foreach (var hazard in Model.Hazards)
+    {
+            @:HazRecKR.DrawHazard(@Html.Raw(Json.Encode(hazard.HotspotPoints)), @hazard.Selected.ToString().ToLower(), @(hazardIndex++));
+    }
+    @foreach (var miss in Model.IncorrectClicks)
+    {
+            @:HazRecKR.DrawMiss(@miss.X, @miss.Y);
+    }
+    @foreach (var correctClick in Model.CorrectClicks)
+    {
+            @:HazRecKR.DrawClick(@correctClick.X, @correctClick.Y);
+    }
+</script>
+
+    <script type="text/javascript" src="~/bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script>
+        $("#results").slick({dots: true});
+        $("#results").show();
+        var slides = $(".slick-slide");
+        $('#results').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+            HazRecKR.LookAt($(slides[nextSlide+1]).data("x"), $(slides[nextSlide+1]).data("y"), nextSlide);
+        });
+        HazRecKR.LookAt($(slides[1]).data("x"), $(slides[1]).data("y"),  0);
+    </script>
+}
+<style>
+    .slick-prev:before, .slick-next:before {
+        color: gray !important;
+    }
+    a.btn-primary{
+        color:white !important;
+        text-decoration:none !important;
+    }
+</style>
+<style>
+    #results {
+        margin-bottom: 30px; display: none;
+    }
+
+        #results div {
+            /*height: 200px;*/
+        }
+
+        #results div ul{
+            overflow: auto;
+            padding-left: 20px;
+        }
+
+        #results img {
+            margin: 10px;
+            height: auto;
+            float: left;
+            margin-right: 10px;
+            max-width: 200px;
+        }
+
+        #results .correct {
+            background-color: #d6e9c6;
+            border-color: #d6e9c6;
+            color: #468847;
+        }
+
+        #results .wrong {
+            background-color: #ffc1c1;
+            border-color: #FF7F7F;
+            color: #b94a48;
+        }
+
+        #results .title {
+            font-size: 1.2em;
+        }
+        span.tp-label{
+            text-decoration:none !important;
+        }
+
+    /*#results ul {
+            list-style-type: disc;
+            margin-left: 200px
+        }*/
+</style>
+<link rel="stylesheet" type="text/css" href="~/bower_components/slick-carousel/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="~/bower_components/slick-carousel/slick/slick-theme.css" />
+<h2>Hazard Recognition Results</h2>
+<a href="@Url.Action("Help")" target="_blank" class="btn btn-primary" style="float:right;">Help</a>
+<h3>Challenge @Model.ChallengeId of @Model.TotalChallenges</h3>
+<h3>@Model.Hazards.Count(q => q.Selected) out of @Model.Hazards.Count hazards correctly identified.</h3>
+<div id="results">
+    @{var index = 1;
+    }
+    @foreach (var hazard in Model.Hazards)
+    {
+        <div class="@(hazard.Selected ? "correct" : "wrong")" data-x="@hazard.HazardCenter.X" data-y="@hazard.HazardCenter.Y">
+            <img src="~/Content/krpano/@Model.ChallengeId/hazards/@hazard.ImageURL" alt="hazard" />
+            <h4 class="title" style="margin-right:10px;">
+                @if (hazard.Selected)
+                {
+                    <i class="fa fa-check" aria-hidden="true" title="Correct"></i><span class="sr-only">Correct</span>
+                }
+                else
+                {
+                    <i class="fa fa-times" aria-hidden="true" title="Not identified"></i><span class="sr-only">Not identified</span>
+                }
+                Hazard @(index++): @hazard.Title
+            </h4>
+            <div style="margin-right:10px;">@Html.Raw(@hazard.Text)</div>
+        </div>
+    }
+</div>
+
+@{ Html.RenderPartial("PanoKR");}
+@Html.ActionLink("Challenge Home", "Index", null, new { @class = "btn btn-primary", style = "float:left; margin-top: 10px;", onclick = "javascript: return confirm('Your current results will be discarded.');" })
+<div align="right" style="margin-top: 10px;">
+    @Html.ActionLink("Results Summary", "ResultSummary", null, new { @class = "btn btn-primary" })
+    @*@if (!Model.IsFirst)
+    {
+        @Html.ActionLink("Previous Image", "ChallengeResult", new { id = @Model.ChallengeId - 1 }, new { @class = "btn btn-primary"})
+    }
+    @if (!Model.IsLast)
+    {
+        @Html.ActionLink("Next Image", "ChallengeResult", new { id = @Model.ChallengeId + 1 }, new { @class = "btn btn-primary" })
+    }*@
+</div>

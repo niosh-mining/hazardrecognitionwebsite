@@ -1,0 +1,20 @@
+﻿<krpano>
+	
+	<!-- the skin -->
+	<include url="../skin/defaultskin.xml" />
+	
+	<!-- view settings -->
+	<view hlookat="0" vlookat="0" maxpixelzoom="10.0" fovmax="150" limitview="range" vlookatmin="-16.519" vlookatmax="16.519" />
+	
+
+	<preview url="Roadway_2_Hazard_Image.tiles/preview.jpg" />
+
+	<image>
+		<cube url="Roadway_2_Hazard_Image.tiles/pano_%s.jpg" />
+
+		<mobile>
+			<cube url="Roadway_2_Hazard_Image.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+  <events onclick="js(HazRecKR.Mouse_Clicked();)"></events>
+</krpano>

@@ -1,0 +1,252 @@
+{
+    "AZ": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 13.5
+        
+    },
+    "CO": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 14.5
+        
+    },
+    "DE": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 13.5
+        
+    },
+    "FL": {
+        "fillKey": "Insufficient Data",
+        "Life_Expectancy": "Insufficient Data"
+        
+    },
+    "GA": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 15.5
+        
+    },
+    "HI": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 13.5
+        
+    },
+    "ID": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 17
+        
+    },
+    "IL": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "IN": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 15
+        
+    },
+    "IA": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 14.5
+        
+    },
+    "KS": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 16
+        
+    },
+    "KY": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 18
+        
+    },
+    "LA": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 16
+        
+    },
+    "MD": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "ME": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "MA": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "MN": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "MI": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 13.5
+        
+    },
+    "MS": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 25
+        
+    },
+    "MO": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 23
+        
+    },
+    "MT": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 30
+        
+    },
+    "NC": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 32
+        
+    },
+    "NE": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 32
+        
+    },
+    "NV": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "NH": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 14.5
+        
+    },
+    "NJ": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 13.5
+        
+    },
+    "NY": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "ND": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 20
+        
+    },
+    "NM": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "OH": {
+        "fillKey": "&lt;= 13.0",
+        "Life_Expectancy": 10
+       
+    },
+    "OK": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 18
+        
+    },
+    "OR": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "PA": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "RI": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "SC": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 23
+        
+    },
+    "SD": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 19
+        
+    },
+    "TN": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 19
+        
+    },
+    "TX": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 19
+        
+    },
+    "UT": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 16
+       
+    },
+    "WI": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "VA": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 14
+        
+    },
+    "VT": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14.5
+        
+    },
+    "WA": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "WV": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 16
+        
+    },
+    "WY": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 18
+        
+    },
+    "CA": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14.4
+        
+    },
+    "CT": {
+        "fillKey": "14.3 - 14.9",
+        "Life_Expectancy": 14
+        
+    },
+    "AK": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 20
+        
+    },
+    "AR": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 21
+        
+    },
+    "AL": {
+        "fillKey": "&gt;= 15.0",
+        "Life_Expectancy": 15
+        
+    }
+}

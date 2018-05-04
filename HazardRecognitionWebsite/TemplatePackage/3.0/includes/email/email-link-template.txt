@@ -1,0 +1,5 @@
+
+The following link found at the Centers for Disease Control and Prevention ([PageUrl]) has been sent by [fromEmail].
+
+[PageTitle]
+[PageUrl]

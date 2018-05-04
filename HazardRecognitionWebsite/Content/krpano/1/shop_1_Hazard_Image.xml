@@ -1,0 +1,28 @@
+﻿<krpano>
+	
+	<!-- the skin -->
+	<include url="../skin/defaultskin.xml" />
+	
+	<!-- view settings -->
+	<view hlookat="0" vlookat="0" maxpixelzoom="6.0" fovmax="150" limitview="range" vlookatmin="-16.519" vlookatmax="16.519" />
+  <skin_settings webvr="true"></skin_settings>
+
+	<preview url="shop_1_Hazard_Image.tiles/preview.jpg" />
+  <events onclick="js(HazRecKR.Mouse_Clicked();)"></events>
+	<image>
+		<cube url="shop_1_Hazard_Image.tiles/pano_%s.jpg" />
+
+		<mobile>
+			<cube url="shop_1_Hazard_Image.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+  
+  <!-- webvr.xml - WebVR plugin, enter/exit VR buttons, VR cursor, VR setup -->
+  <!--<include url="%SWFPATH%/../plugins/webvr.xml" />-->
+
+  <!-- add/overwrite some settings from the webvr.xml for this example -->
+  <!--<plugin name="WebVR" mobilevr_fake_support="true" worldscale="0.1" />-->
+  <!-- enable the FAKE VR support to allow testing also on desktop and tablets without VR support -->
+
+  <!--<plugin name="editor" url="plugins/editor.swf" keep="true" />-->
+</krpano>

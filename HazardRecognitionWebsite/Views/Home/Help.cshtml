@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.HeadTitle = "Hazard Recognition Help Guide";
+    ViewBag.BodyTitle = "Hazard Recognition Help Guide";
+    ViewBag.Title = "CDC - Mining - Hazard Recognition Challenge - Help Guide";
+}
+<style>
+    figcaption {
+        text-align: center;
+        font-style: italic;
+    }
+
+    #beginButton:hover {
+        cursor: default;
+    }
+
+    .keyImage {
+        background-color: lightgray;
+    }
+
+    h2 {
+        margin-top: 50px;
+    }
+</style>
+<h1>Hazard Recognition Challenge Help Guide</h1>
+<div class="module-typeF">
+    <h4>Contents</h4>
+    <div class="listContainer">
+        <ul class="list-bullet listCol1">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#starting">Starting the Hazard Recognition Challenge</a></li>
+            <li><a href="#challenge">Navigating the Hazard Challenge Page</a></li>
+            <li><a href="#summary">Navigating the Hazard Recognition Results Summary Page</a></li>
+            <li><a href="#results">Navigating the Hazard Recognition Results Page</a></li>
+        </ul>
+    </div>
+</div>
+<h2 id="intro">Introduction</h2>
+<p>Welcome to the Hazard Recognition Challenge - a web-browser-based application. Use of the application requires a PC or tablet with a browser (such as Internet Explorer, Chrome, or Mozilla) and an internet connection. To find this application on the NIOSH website, open a web browser and navigate to Hazard Recognition Challenge at <a href="https://wwwn.cdc.gov/niosh-mining/HazRec" target="_blank">https://wwwn.cdc.gov/niosh-mining/HazRec</a>. </p>
+<h2 id="starting">Starting the Hazard Recognition Challenge</h2>
+<p>To start the Hazard Recognition challenge click on the <strong>Begin</strong> button located near the bottom of the Hazard Recognition Challenge web page. This takes you to the first hazard recognition challenge location, the shop, shown in <strong>Figure 1.</strong></p>
+<figure>
+    <img class="polaroid center" alt="Figure 1: Hazard Challenge 1" src="@Url.Content("~/Content/help/figure1.png")" />
+    <figcaption>Figure 1: Hazard Challenge 1</figcaption>
+</figure>
+<h2 id="challenge">Navigating the Hazard Challenge Page</h2>
+<p>Once you start the Hazard Recognition Challenge, you can navigate the panoramic scene with the mouse or keyboard arrow keys.</p>
+<div class="module-typeD">
+    <h3>Basic Navigation Instructions:</h3>
+    <div>
+        <ul class="list-bullet">
+            <li>Click the arrow buttons on the panoramic scene or press your keyboard arrow keys to pan around the 360-degree image. You may also use your mouse to pan by dragging the cursor over the image.</li>
+            <li>To zoom in and out, click the plus (+) and minus (-) buttons on the panoramic scene or rotate your mouse wheel.</li>
+            <li>Click on any hazards you spot. A marker will appear in the location you click. If you add a marker by mistake, you can click on it to remove it. </li>
+            <li>You have two minutes to identify hazards at each location. If you finish a location early, click on the Next button at the bottom right of the screen to proceed to the next challenge. If you finish the final challenge early, click on the Finish button at the bottom right of the screen. If you do not finish a challenge within two minutes, the App will automatically take you to the next challenge, or to the results page, with your results recorded.</li>
+        </ul>
+    </div>
+</div>
+<table class="table">
+    <caption>Table 1: Panoramic Scene Buttons</caption>
+    <thead>
+        <tr>
+            <th scope="col">Buttons</th>
+            <th scope="col">Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img class="keyImage" src="@Url.Content("~/Content/Help/plus.png")" alt="Plus and minus buttons" /></td>
+            <td>Click on the plus (+) and minus (-) buttons to zoom in and out. You can also rotate your mouse wheel to zoom in and out.</td>
+        </tr>
+        <tr>
+            <td>
+                <img class="keyImage" src="@Url.Content("~/Content/Help/arrowleft.png")" alt="Buttons with arrows pointing up, down, left, and right" />
+            </td>
+            <td>
+                Click on the arrow buttons to pan the field of view left, right, up and down.
+                Note that the field of view can only pan up or down if you have zoomed in.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <figure style="margin: 0px; width: 50px; display: inline-block;">
+                    <img class="keyImage" src="@Url.Content("~/Content/Help/panarrow.png")" alt="Four arrows" />
+                    <figcaption>Mode 1</figcaption>
+                </figure>
+                <figure style="margin: 0px; width: 50px; display: inline-block;">
+                    <img class="keyImage" src="@Url.Content("~/Content/Help/panhand.png")" alt="Hand" />
+                    <figcaption>Mode 2</figcaption>
+                </figure>
+            </td>
+            <td>
+                Click these buttons to toggle between two different panning modes. In Mode 1, you pan the field of view field by dragging the cursor over the scene in the desired direction. The panning will follow your mouse movements. In Mode 2, you pan the field of view by again dragging the cursor over the scene in the desired direction. In this case, the image will continue to pan in the direction you choose until you release the mouse button.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img class="keyImage" src="@Url.Content("~/Content/Help/fullscreen.png")" alt="Four arrows pointing to corners" />
+            </td>
+            <td>
+                Click this button to enter full screen mode. Press the keyboard escape key to exit full screen mode.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h2 id="summary">Navigating the Hazard Recognition Results Summary Page</h2>
+<p>After completing the fourth challenge location (the roadway), you will be taken to the Hazard Recognition Results Summary page, shown in <strong>Figure 2</strong>.</p>
+<p>For each challenge, the results summary page shows the number of hazards correctly identified, the total number of clicks made while searching, and the number of incorrect clicks made while searching. To view detailed results for any challenge, click on the <strong>View Results</strong> button associated with each challenge summary.</p>
+<div class="alert alert-danger">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> The App does not save your results if you return to the challenge home, restart the challenge, or otherwise navigate away from the challenge site before you review all the results.
+</div>
+<p>
+    <figure>
+        <img class="polaroid center" alt="Figure 2: Hazard Recognition Results Summary Page" src="@Url.Content("~/Content/help/figure2.png")" />
+        <figcaption>Figure 2: Hazard Recognition Results Summary Page</figcaption>
+    </figure>
+</p>
+
+<h2 id="results">Navigating the Hazard Recognition Results Page</h2>
+<p>
+    After clicking on the <strong>View Results</strong> button, the App takes you to the Hazard Recognition Results page for the challenge location that you selected.
+    <strong>Figure 3</strong> shows the results page for Challenge 1.
+</p>
+<p>In this example, the user correctly identified 4 out of 7 hazards. A description of the first hazard, “Hazard 1: Improper Use of a Ladder”, appears in the description banner above the panoramic scene, while the corresponding region of interest (ROI) is outlined in the challenge panoramic scene. In this case, the App highlights the banner with a red background and outlines the ROI in red to indicate that the user missed this hazard during the challenge. Hazards the user identifies correctly will have green highlights. </p>
+<figure>
+    <img class="polaroid center" alt="Figure 3: Hazard Recognition Results Page" src="@Url.Content("~/Content/help/figure3.png")" />
+    <figcaption>Figure 3: Hazard Recognition Results Page</figcaption>
+</figure>
+
+<div class="module-typeD">
+    <h3>Basic Navigation of the Hazard Recognition Results Page: </h3>
+    <div>
+        <ul class="list-bullet">
+            <li>
+                To advance through the hazard descriptions, click on the arrow buttons (<img alt="Left arrow" src="@Url.Content("~/Content/help/arrowleft2.png")" /> <img alt="Right arrow" src="@Url.Content("~/Content/help/arrowright2.png")" /> ) to the left or right of the hazard description banner. Alternatively, you may pan around the panoramic scene and click on the outlined ROI of the desired hazard to jump to the selected hazard description.
+            </li>
+            <li>Hazards you correctly identified have a green background and a check mark in the top left corner of the description banner. Hazards you missed have a red background and a X in the top left corner of the description banner.</li>
+            <li>The hazard descriptions in the banner contain hyperlinks to open a new tab in your browser to display additional information.</li>
+            <li>To return to the results summary page, click on the <strong>Results Summary</strong> button near the bottom right corner of the page. To return to the Challenge Home, click on the <strong>Challenge Home</strong> button near the bottom left corner of the page. </li>
+        </ul>
+    </div>
+</div>
+<div class="alert alert-danger">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> The App does not save your results if you return to the challenge home.
+</div>
